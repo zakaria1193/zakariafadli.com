@@ -5,12 +5,45 @@
   <title>Zakaria Fadli</title>
   <meta name="viewport" content="width=device-width, initial-scale=1">
   <meta name="description" content="Zakaria Fadli's personal site.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
   <link rel="stylesheet" href="/style.css">
 </head>
 <body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/">Zakaria Fadli</a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="/" aria-current="page">Home</a></li>
+          <li><a href="/cv/">CV</a></li>
+          <li><a href="/learning/">Learning</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
   <main>
-    <h1>zakariafadli.com</h1>
-    <p>Placeholder page. The real site lands in the next step of this ticket.</p>
+    <div class="wrap">
+      <div class="hero">
+        <div class="hero-text">
+          <h1>Hi!</h1>
+          <p>
+            I'm Zak, a software engineer working on C/C++ Firmware for IoT devices at
+            <a href="https://www.netatmo.com">Netatmo</a> in Paris.<br>
+            Here, I share my tips, thoughts, setup, and tools.<br>
+            Otherwise, this website is a playground for me to experiment with modern frontend web
+            technologies.<br>
+            Checkout <a href="/cv/">my resume</a> for more information.
+          </p>
+        </div>
+        <img class="hero-photo" src="/assets/photo.jpg" alt="Zak" loading="lazy">
+      </div>
+    </div>
   </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; Zakaria Fadli
+    </div>
+  </footer>
 </body>
 </html>

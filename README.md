@@ -16,11 +16,22 @@ make test    # stdlib checker: titles, viewport meta, internal links and assets
 
 ## Page map
 
-Filled in as pages are ported from the old site (next step of this ticket).
+The old site was a React app (create-react-app + react-router); its real routes were
+`/`, `/cv` and `/learning` (a hidden homepage grid also linked `/resume`, `/blog` and
+`/resources`, but those routes were never registered in `src/index.js` and rendered
+nothing live, so they have no new page). Every route that was live is ported, same path:
 
 | Old page (`zakaria1193.github.io`) | New page |
 | --- | --- |
-| _pending_ | _pending_ |
+| `/` (Home: intro banner + photo) | `/` |
+| `/cv` (CV: Experience + Education) | `/cv/` |
+| `/learning` (Embedded Learning Resources) | `/learning/` |
+
+Assets copied word for word: `public/photo.jpg` → `site/assets/photo.jpg`,
+`src/assets/enseeiht_logo.png` → `site/assets/enseeiht-logo.png`,
+`src/assets/georgia_tech_extended_logo.png` → `site/assets/georgia-tech-logo.png`,
+`src/assets/netatmo_logo.png` → `site/assets/netatmo-logo.png`. The old site has no CV
+PDF, so none is copied.
 
 ## Apps
 

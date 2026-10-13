@@ -17,6 +17,14 @@ SITE = Path(__file__).resolve().parent.parent / "site"
 LINK_ATTRS = {"a": "href", "link": "href", "img": "src", "script": "src"}
 EXTERNAL_SCHEMES = {"http", "https", "mailto", "tel"}
 
+# Every page the old zakaria1193.github.io site served (its React router paths),
+# mapped to where it now lives under site/. See README.md's page map.
+OLD_PAGES = {
+    "/": "index.html",
+    "/cv": "cv/index.html",
+    "/learning": "learning/index.html",
+}
+
 
 class PageScan(HTMLParser):
     def __init__(self):
@@ -67,6 +75,10 @@ def main():
     pages = sorted(SITE.rglob("*.html"))
     if not pages:
         problems.append("no .html files found under site/")
+
+    for old_path, new_path in OLD_PAGES.items():
+        if not (SITE / new_path).exists():
+            problems.append(f"old page '{old_path}' has no new page at site/{new_path}")
     for page in pages:
         scan = PageScan()
         scan.feed(page.read_text(encoding="utf-8"))
