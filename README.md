@@ -71,4 +71,4 @@ hand-written), `can-you-review` (no README), `bustimes` (empty repo), and all fo
 
 ## Follow-up ticket
 
-Go-live ticket id: _pending_ (created by the last step of this ticket).
+Go-live ticket id: `zakariafadli-com-0001`.
