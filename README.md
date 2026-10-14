@@ -26,6 +26,7 @@ nothing live, so they have no new page). Every route that was live is ported, sa
 | `/` (Home: intro banner + photo) | `/` |
 | `/cv` (CV: Experience + Education) | `/cv/` |
 | `/learning` (Embedded Learning Resources) | `/learning/` |
+| _(new, not on the old site)_ | `/apps/` |
 
 Assets copied word for word: `public/photo.jpg` → `site/assets/photo.jpg`,
 `src/assets/enseeiht_logo.png` → `site/assets/enseeiht-logo.png`,
@@ -35,7 +36,24 @@ PDF, so none is copied.
 
 ## Apps
 
-Filled in once the Apps section is built (a later step of this ticket).
+`/apps/` shows computerrev first, then 3 public repos, picked from
+`gh repo list zakaria1193 --visibility public` by actually having AI involved in building
+them (a Claude/Copilot/GPT commit trail, not just the phrase "AI" in a README), being
+non-empty, non-fork and having a README. **Owner: please check these before removing
+`hold` from the go-live ticket** — swap any of them out if they're not the ones you'd
+want on the front page.
+
+| Pick | Why |
+| --- | --- |
+| **computerrev** (`computerrevision`, private) | Explicitly named in the request. An interactive AArch64/RISC-V/x86/Cortex-M exception-handling reference, built with Claude (has a `CLAUDE.md`). The repo is private and its only deploy is an internal AdaCore GitLab Pages URL, so the card has no link, per the spec's edge case for a private pick. |
+| **homelab** | The most actively maintained public repo, with `CLAUDE.md`/`AGENTS.md` wired in for an AI assistant to help maintain it (real Docker-based home server + Home Assistant setup, not a toy). |
+| **gdb2dict** | A small debugging tool with a real audience: published on PyPI, with passing CI and a merged PR with a `Co-Authored-By: Claude` trailer. The clearest "AI helped ship something people actually use" pick. |
+| **mockerbee** | A C++ Zigbee device-mocking library where several merged PRs came from an autonomous GPT PR bot (`ci: Add name to gpt workflow`) rather than a human — the most literal "AI wrote this" example, even though the library itself is still marked a draft in its own README. |
+
+Repos considered and left out: `autotools_installer`, `emb-linux-common`,
+`my_cpp_boilerplate`, `sniffertunnel`, `zap-gatsby` (no AI commit trail found —
+hand-written), `can-you-review` (no README), `bustimes` (empty repo), and all forks
+(`arr-mcp`, `kandev`, `kandev-plugin-slack`, `LazyVim`, etc., excluded by the spec).
 
 ## Secrets
 
