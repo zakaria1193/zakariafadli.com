@@ -45,7 +45,7 @@ want on the front page.
 
 | Pick | Why |
 | --- | --- |
-| **computerrev** (`computerrevision`, public) | An interactive AArch64/RISC-V/x86/Cortex-M exception-handling reference, built with Claude (has a `CLAUDE.md`). Deployed to Cloudflare Pages at `https://computerrevision.pages.dev` with public repo. |
+| **computerrev** (`computerrevision`, private) | An interactive AArch64/RISC-V/x86/Cortex-M exception-handling reference, built with Claude (has a `CLAUDE.md`). Deployed publicly to Cloudflare Pages at `https://computerrevision.pages.dev` (the source repository remains private). |
 | **gdb2dict** | A small debugging tool with a real audience: published on PyPI, with passing CI and a merged PR with a `Co-Authored-By: Claude` trailer. The clearest "AI helped ship something people actually use" pick. |
 | **mockerbee** | A C++ Zigbee device-mocking library where several merged PRs came from an autonomous GPT PR bot (`ci: Add name to gpt workflow`) rather than a human — the most literal "AI wrote this" example, even though the library itself is still marked a draft in its own README. |
 
