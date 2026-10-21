@@ -46,7 +46,7 @@ want on the front page.
 | Pick | Why |
 | --- | --- |
 | **computerrev** (`computerrevision`, private) | An interactive AArch64/RISC-V/x86/Cortex-M exception-handling reference, built with Claude (has a `CLAUDE.md`). Deployed publicly to Cloudflare Pages at `https://computerrevision.pages.dev` (the source repository remains private). |
-| **aicli** | The wrapper every one of Zak's private tools calls `claude`/`agy` through (routing by workload class, model tiers, usage log, OpenAI-compatible endpoint). Pulled out of homelab into its own public repo on 2026-10-21 and added at the owner's request. |
+| **aicli** | A proxy for AI coding CLIs: routes Zak's scripts through Claude Code / Antigravity subscriptions (far cheaper than API pricing) with one switchable routing table, usage log and an OpenAI-compatible endpoint. More backends planned. Pulled out of homelab into its own public repo on 2026-10-21 and added at the owner's request. |
 | **gdb2dict** | A small debugging tool with a real audience: published on PyPI, with passing CI and a merged PR with a `Co-Authored-By: Claude` trailer. The clearest "AI helped ship something people actually use" pick. |
 | **mockerbee** | A C++ Zigbee device-mocking library where several merged PRs came from an autonomous GPT PR bot (`ci: Add name to gpt workflow`) rather than a human — the most literal "AI wrote this" example, even though the library itself is still marked a draft in its own README. |
 
