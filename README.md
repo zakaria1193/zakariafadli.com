@@ -33,7 +33,9 @@ Assets copied word for word: `public/photo.jpg` → `site/assets/photo.jpg`,
 `src/assets/enseeiht_logo.png` → `site/assets/enseeiht-logo.png`,
 `src/assets/georgia_tech_extended_logo.png` → `site/assets/georgia-tech-logo.png`,
 `src/assets/netatmo_logo.png` → `site/assets/netatmo-logo.png`. The old site has no CV
-PDF, so none is copied.
+PDF, so none is copied. `site/assets/legrand-logo.svg` is not from the old site: it's
+the official Legrand logo, downloaded from Wikimedia Commons at
+https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Legrand_SA.svg.
 
 ## Apps
 
