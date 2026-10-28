@@ -153,6 +153,20 @@ h3 {
   object-fit: contain;
 }
 
+.logo-pair {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+  flex-shrink: 0;
+}
+
+.logo-pair img:last-child {
+  width: auto;
+  height: 4rem;
+  max-width: 8rem;
+  object-fit: contain;
+}
+
 .meta {
   color: var(--color-ink-soft);
   font-size: 0.9rem;
@@ -228,5 +242,14 @@ footer.site-footer {
   .hero-photo {
     width: 8rem;
     height: 8rem;
+  }
+
+  .card-row:has(.logo-pair) {
+    flex-wrap: wrap;
+  }
+
+  .logo-pair img:last-child {
+    height: 3rem;
+    max-width: 6rem;
   }
 }
