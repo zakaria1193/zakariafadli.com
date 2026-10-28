@@ -11,7 +11,8 @@ Alan-style redesign (deep blue, soft pastels, lots of white space).
 
 ```bash
 make serve   # http://localhost:8000, site/ as the web root
-make test    # stdlib checker: titles, viewport meta, internal links and assets
+make test    # stdlib checker: titles, viewport meta, internal links/assets and every
+             # external link (needs the network)
 ```
 
 ## Page map
