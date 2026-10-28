@@ -177,6 +177,20 @@ h3 {
   margin-bottom: 2rem;
 }
 
+.products-heading {
+  font-size: 0.85rem;
+  text-transform: uppercase;
+  letter-spacing: 0.04em;
+  color: var(--color-ink-soft);
+  margin: 1rem 0 0.5rem;
+}
+
+.chip-row {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 0.5rem;
+}
+
 .filters select {
   font-family: var(--font-sans);
   padding: 0.4rem 0.75rem;
