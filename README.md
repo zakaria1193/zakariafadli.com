@@ -28,6 +28,7 @@ nothing live, so they have no new page). Every route that was live is ported, sa
 | `/cv` (CV: Experience + Education) | `/cv/` |
 | `/learning` (Embedded Learning Resources) | `/learning/` |
 | _(new, not on the old site)_ | `/apps/` |
+| _(new, not on the old site)_ | `/contact/` |
 
 Assets copied word for word: `public/photo.jpg` → `site/assets/photo.jpg`,
 `src/assets/enseeiht_logo.png` → `site/assets/enseeiht-logo.png`,
