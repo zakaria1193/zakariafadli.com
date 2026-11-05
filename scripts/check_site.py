@@ -24,6 +24,8 @@ SITE = Path(__file__).resolve().parent.parent / "site"
 LINK_ATTRS = {"a": "href", "link": "href", "img": "src", "script": "src"}
 EXTERNAL_SCHEMES = {"http", "https", "mailto", "tel"}
 SKIP_LINK_RELS = {"preconnect", "dns-prefetch"}
+INTERNAL_HOSTS = {"zakariafadli.com", "www.zakariafadli.com"}
+SITE_DOMAIN = "https://zakariafadli.com"
 USER_AGENT = (
     "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 "
     "(KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
@@ -46,17 +48,23 @@ class PageScan(HTMLParser):
         self.title = None
         self.has_viewport = False
         self.links = []  # list of (link, skip_external)
+        self.html_lang = None
+        self.alternates = {}  # hreflang -> href
         self._in_title = False
 
     def handle_starttag(self, tag, attrs):
         attrs = dict(attrs)
+        if tag == "html":
+            self.html_lang = attrs.get("lang")
         if tag == "title":
             self._in_title = True
         if tag == "meta" and attrs.get("name") == "viewport" and attrs.get("content"):
             self.has_viewport = True
+        rels = (attrs.get("rel") or "").lower().split()
+        if tag == "link" and "alternate" in rels and attrs.get("hreflang") and attrs.get("href"):
+            self.alternates[attrs["hreflang"]] = attrs["href"]
         attr = LINK_ATTRS.get(tag)
         if attr and attrs.get(attr):
-            rels = (attrs.get("rel") or "").lower().split()
             skip_external = tag == "link" and any(r in SKIP_LINK_RELS for r in rels)
             self.links.append((attrs[attr], skip_external))
 
@@ -70,9 +78,16 @@ class PageScan(HTMLParser):
 
 
 def resolve(link, page):
-    """Return the file an internal link points to, or None if it is external/anchor-only."""
+    """Return the file an internal link points to, or None if it is external/anchor-only.
+
+    A link onto SITE_DOMAIN (e.g. hreflang alternates) is treated as internal too,
+    resolved against site/ like a root-relative link, since those URLs are not live
+    yet (see ## Edge cases in zakariafadli-com-0003).
+    """
     split = urlsplit(link)
-    if split.scheme in EXTERNAL_SCHEMES or link.startswith("//"):
+    if split.scheme in ("mailto", "tel") or link.startswith("//"):
+        return None
+    if split.netloc and split.netloc not in INTERNAL_HOSTS:
         return None
     path = split.path
     if not path:
@@ -84,6 +99,22 @@ def resolve(link, page):
     if target.is_dir() or path.endswith("/"):
         target = target / "index.html"
     return target
+
+
+def twin_rel(rel):
+    """Return the expected English<->French twin path for a page's path relative to SITE."""
+    parts = rel.parts
+    if parts[0] == "fr":
+        return Path(*parts[1:])
+    return Path("fr", *parts)
+
+
+def url_of(rel):
+    """Return the site-root-relative URL for a page's path relative to SITE."""
+    parent = rel.parent
+    if parent == Path("."):
+        return "/"
+    return "/" + parent.as_posix() + "/"
 
 
 def strip_fragment(url):
@@ -159,6 +190,25 @@ def main():
             problems.append(f"{rel}: missing or empty <title>")
         if not scan.has_viewport:
             problems.append(f"{rel}: missing viewport meta tag")
+
+        is_fr = rel.parts[0] == "fr"
+        expected_lang = "fr" if is_fr else "en"
+        if scan.html_lang != expected_lang:
+            problems.append(f"{rel}: <html lang> is {scan.html_lang!r}, expected {expected_lang!r}")
+
+        twin = twin_rel(rel)
+        if not (SITE / twin).exists():
+            problems.append(f"{rel}: no {'English' if is_fr else 'French'} twin at site/{twin}")
+
+        en_rel, fr_rel = (twin, rel) if is_fr else (rel, twin)
+        en_url = SITE_DOMAIN + url_of(en_rel)
+        fr_url = SITE_DOMAIN + url_of(fr_rel)
+        expected_alternates = {"en": en_url, "fr": fr_url, "x-default": en_url}
+        if scan.alternates != expected_alternates:
+            problems.append(
+                f"{rel}: hreflang alternates are {scan.alternates}, expected {expected_alternates}"
+            )
+
         for link, skip_external in scan.links:
             target = resolve(link, page)
             if target is not None and not target.exists():

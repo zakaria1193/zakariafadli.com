@@ -30,6 +30,9 @@ nothing live, so they have no new page). Every route that was live is ported, sa
 | _(new, not on the old site)_ | `/apps/` |
 | _(new, not on the old site)_ | `/contact/` |
 
+Every page above also has a French twin under `/fr/...` (e.g. `/fr/cv/`), see
+## Languages.
+
 Assets copied word for word: `public/photo.jpg` → `site/assets/photo.jpg`,
 `src/assets/enseeiht_logo.png` → `site/assets/enseeiht-logo.png`,
 `src/assets/georgia_tech_extended_logo.png` → `site/assets/georgia-tech-logo.png`,
@@ -37,6 +40,21 @@ Assets copied word for word: `public/photo.jpg` → `site/assets/photo.jpg`,
 PDF, so none is copied. `site/assets/legrand-logo.svg` is not from the old site: it's
 the official Legrand logo, downloaded from Wikimedia Commons at
 https://upload.wikimedia.org/wikipedia/commons/7/73/Logo_Legrand_SA.svg.
+
+## Languages
+
+Every English page (`/`, `/cv/`, `/learning/`, `/apps/`, `/contact/`) has a French
+twin at the same path under `/fr/` (e.g. `/fr/cv/`). Each page carries
+`<html lang>` and `en`/`fr`/`x-default` hreflang alternates pointing at its own pair,
+and a nav language toggle that links to its twin and sets a `lang` cookie
+(`en`/`fr`, `Path=/`, one year, `SameSite=Lax`) via `site/lang.js`.
+
+A Cloudflare Pages Function (`functions/_middleware.js`) redirects a French visitor
+(`CF-IPCountry: FR`) from an English page to its French twin, unless the `lang`
+cookie already picked a language. It never redirects away from a `/fr/` page, and
+any error in it falls through to serving the English page. `make serve`
+(the local static server) does not run this function; geo-detection only runs on a
+Cloudflare Pages deployment.
 
 ## Apps
 
