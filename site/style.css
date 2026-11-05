@@ -83,6 +83,27 @@ nav.site-nav a:hover {
   border-bottom-color: var(--color-accent);
 }
 
+.lang-toggle {
+  display: flex;
+  align-items: center;
+  gap: 0.35rem;
+}
+
+.lang-toggle span[aria-current="true"] {
+  color: var(--color-ink);
+  font-weight: 700;
+}
+
+.lang-toggle a {
+  color: var(--color-ink-soft);
+  text-decoration: none;
+  font-weight: 500;
+}
+
+.lang-toggle a:hover {
+  color: var(--color-ink);
+}
+
 main {
   padding: 3rem 0 4rem;
 }
