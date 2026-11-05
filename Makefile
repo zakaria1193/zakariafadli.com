@@ -5,6 +5,7 @@ serve:
 
 test:
 	python3 scripts/check_site.py
+	node --test functions/lib/*.test.mjs
 
 unlock:
 	git-crypt unlock
