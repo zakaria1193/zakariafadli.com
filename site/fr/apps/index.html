@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="utf-8">
+  <title>Zakaria Fadli - Applications</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="Quelques applications créées par Zakaria Fadli, plusieurs avec l'aide de l'IA.">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;700&display=swap">
+  <link rel="stylesheet" href="/style.css">
+</head>
+<body>
+  <header class="site-header">
+    <div class="wrap">
+      <a class="brand" href="/fr/">Zakaria Fadli</a>
+      <nav class="site-nav">
+        <ul>
+          <li><a href="/fr/">Accueil</a></li>
+          <li><a href="/fr/cv/">CV</a></li>
+          <li><a href="/fr/learning/">Ressources</a></li>
+          <li><a href="/fr/apps/" aria-current="page">Applications</a></li>
+          <li><a href="/fr/contact/">Contact</a></li>
+        </ul>
+      </nav>
+    </div>
+  </header>
+  <main>
+    <div class="wrap">
+      <h1>Applications</h1>
+      <p>Quelques projets que j'ai créés, plusieurs avec une IA m'accompagnant sur une bonne partie du travail.</p>
+
+      <div class="card">
+        <h3><a href="https://computerrevision.pages.dev">Exception Rosetta (computerrev)</a></h3>
+        <p class="meta"><a href="https://computerrevision.pages.dev">Application en ligne</a></p>
+        <p>
+          Une référence interactive qui met en parallèle la façon dont AArch64, RISC-V, x86 et
+          Cortex-M gèrent les exceptions et les interruptions, pour que changer d'architecture
+          ne signifie pas tout réapprendre depuis le début.
+        </p>
+      </div>
+
+      <div class="card pastel-lilac">
+        <h3><a href="https://github.com/zakaria1193/aicli">aicli</a></h3>
+        <p class="meta"><a href="https://github.com/zakaria1193/aicli">GitHub</a></p>
+        <p>
+          Un proxy pour les CLI de codage IA. Un abonnement Claude Code ou Antigravity couvre
+          bien plus de travail que ce que le même budget achète aux prix de l'API, mais rien ne
+          permettait à mes scripts d'en utiliser plusieurs et de basculer entre elles. C'est ce
+          que fait aicli : les appelants indiquent le type de travail, et aicli choisit la CLI
+          et le modèle à partir d'une table de routage en direct, journalise qui a utilisé quoi,
+          et peut exposer un point de terminaison compatible OpenAI. Il exécute les CLI
+          officielles sous mon propre compte. Claude Code et Antigravity aujourd'hui, d'autres
+          backends prévus.
+        </p>
+      </div>
+
+      <div class="card pastel-mint">
+        <h3><a href="https://github.com/zakaria1193/gdb2dict">gdb2dict</a></h3>
+        <p class="meta"><a href="https://pypi.org/project/gdb2dict/">Paquet PyPI</a> &middot; <a href="https://github.com/zakaria1193/gdb2dict">GitHub</a></p>
+        <p>
+          Un petit utilitaire Python pour GDB qui transforme la sortie de gdb.Value en
+          dictionnaires Python classiques, pour sérialiser directement en JSON des structures
+          C/C++ depuis une session de débogage.
+        </p>
+      </div>
+
+      <div class="card pastel-peach">
+        <h3><a href="https://github.com/zakaria1193/mockerbee">mockerbee</a></h3>
+        <p class="meta"><a href="https://github.com/zakaria1193/mockerbee">GitHub</a></p>
+        <p>
+          Une bibliothèque C++ qui simule des ensembles d'appareils Zigbee ZCL pour tester des
+          passerelles et hubs IoT, avec plusieurs fonctionnalités implémentées par un bot IA
+          autonome via des pull requests.
+        </p>
+      </div>
+    </div>
+  </main>
+  <footer class="site-footer">
+    <div class="wrap">
+      &copy; Zakaria Fadli
+    </div>
+  </footer>
+</body>
+</html>

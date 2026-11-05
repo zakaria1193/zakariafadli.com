@@ -1,8 +1,25 @@
+const LABELS_FR = {
+  "Blog Post": "Article de blog",
+  "White Paper": "Livre blanc",
+  "Video": "Vidéo",
+  "Webpage": "Page web",
+  "Intermediate": "Intermédiaire",
+  "MCU Programming": "Programmation MCU",
+  "Networking": "Réseau",
+  "C Programming": "Programmation C",
+  "IO Programming": "Programmation E/S",
+};
+
+function label(text) {
+  if (document.documentElement.lang !== "fr") return text;
+  return LABELS_FR[text] || text;
+}
+
 function populateSelect(select, options) {
   for (const option of options) {
     const el = document.createElement("option");
     el.value = option;
-    el.textContent = option;
+    el.textContent = label(option);
     select.appendChild(el);
   }
 }
@@ -25,7 +42,7 @@ function renderSections(filteredItems) {
 
     const section = document.createElement("section");
     const heading = document.createElement("h2");
-    heading.textContent = sectionTitle;
+    heading.textContent = label(sectionTitle);
     section.appendChild(heading);
 
     const subsections = [...new Set(sectionItems.map((item) => item.subsection).filter(Boolean))];
@@ -37,7 +54,7 @@ function renderSections(filteredItems) {
 
     for (const subsectionTitle of subsections) {
       const subHeading = document.createElement("h3");
-      subHeading.textContent = subsectionTitle;
+      subHeading.textContent = label(subsectionTitle);
       section.appendChild(subHeading);
       for (const item of sectionItems.filter((item) => item.subsection === subsectionTitle)) {
         section.appendChild(renderItem(item));
