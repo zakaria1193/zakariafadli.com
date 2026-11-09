@@ -49,12 +49,13 @@ twin at the same path under `/fr/` (e.g. `/fr/cv/`). Each page carries
 and a nav language toggle that links to its twin and sets a `lang` cookie
 (`en`/`fr`, `Path=/`, one year, `SameSite=Lax`) via `site/lang.js`.
 
-A Cloudflare Pages Function (`functions/_middleware.js`) redirects a French visitor
-(`CF-IPCountry: FR`) from an English page to its French twin, unless the `lang`
-cookie already picked a language. It never redirects away from a `/fr/` page, and
-any error in it falls through to serving the English page. `make serve`
-(the local static server) does not run this function; geo-detection only runs on a
-Cloudflare Pages deployment.
+A Cloudflare Pages Function (`functions/_middleware.js`) redirects a visitor whose
+browser's top-priority language (from the `Accept-Language` header) is `fr`,
+`fr-FR`, `fr-BE` or `fr-CH` from an English page to its French twin, unless the
+`lang` cookie already picked a language. It never redirects away from a `/fr/`
+page, and any error in it falls through to serving the English page. `make serve`
+(the local static server) does not run this function; the language redirect only
+runs on a Cloudflare Pages deployment.
 
 ## Apps
 

@@ -30,16 +30,50 @@ export function parseLangCookie(cookieHeader) {
   return null;
 }
 
+const FRENCH_TAGS = new Set(["fr", "fr-fr", "fr-be", "fr-ch"]);
+
+// Returns true when the Accept-Language header's top-priority language
+// (highest q, default 1, earliest in the header on a tie) is one of the
+// accepted French tags. Malformed entries are skipped without throwing.
+export function isFrenchTopLanguage(acceptLanguage) {
+  if (!acceptLanguage) return false;
+  let bestTag = null;
+  let bestQ = -1;
+  for (const entry of acceptLanguage.split(",")) {
+    const part = entry.trim();
+    if (!part) continue;
+    const [rawTag, ...params] = part.split(";");
+    const tag = rawTag.trim();
+    if (!tag) continue;
+    let q = 1;
+    for (const param of params) {
+      const eq = param.indexOf("=");
+      if (eq === -1) continue;
+      const key = param.slice(0, eq).trim();
+      if (key !== "q") continue;
+      const value = Number(param.slice(eq + 1).trim());
+      if (!Number.isNaN(value)) q = value;
+    }
+    if (q <= 0) continue;
+    if (q > bestQ) {
+      bestQ = q;
+      bestTag = tag;
+    }
+  }
+  if (bestTag === null) return false;
+  return FRENCH_TAGS.has(bestTag.toLowerCase());
+}
+
 // Returns the French twin path (+ query string) to redirect to, or null to
 // serve the English page / fall through unchanged.
-export function decideRedirect({ method, pathname, search = "", cookieHeader = "", country = "" }) {
+export function decideRedirect({ method, pathname, search = "", cookieHeader = "", acceptLanguage = "" }) {
   if (method !== "GET" && method !== "HEAD") return null;
   const twin = frenchTwin(pathname);
   if (!twin) return null;
   const lang = parseLangCookie(cookieHeader);
   if (lang === "en") return null;
   if (lang === "fr") return twin + search;
-  if (country === "FR") return twin + search;
+  if (isFrenchTopLanguage(acceptLanguage)) return twin + search;
   return null;
 }
 
@@ -51,7 +85,7 @@ export function redirectInit(location) {
     headers: {
       Location: location,
       "Cache-Control": "private, no-store",
-      Vary: "Cookie",
+      Vary: "Accept-Language, Cookie",
     },
   };
 }

@@ -1,4 +1,4 @@
-// Saves the visitor's manual EN/FR choice so it beats geo-detection next time.
+// Saves the visitor's manual EN/FR choice so it beats the Accept-Language redirect next time.
 (function () {
   function setLangCookie(value) {
     var secure = location.protocol === "https:" ? "; Secure" : "";

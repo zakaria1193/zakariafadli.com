@@ -9,7 +9,7 @@ export async function onRequest(context) {
       pathname: url.pathname,
       search: url.search,
       cookieHeader: request.headers.get("Cookie") || "",
-      country: request.headers.get("CF-IPCountry") || "",
+      acceptLanguage: request.headers.get("Accept-Language") || "",
     });
     if (target) {
       return new Response(null, redirectInit(target));
