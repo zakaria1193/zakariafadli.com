@@ -1,0 +1,64 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9"
+        xmlns:xhtml="http://www.w3.org/1999/xhtml">
+  <url>
+    <loc>https://zakariafadli.com/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/cv/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/cv/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/cv/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/cv/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/learning/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/learning/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/learning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/learning/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/apps/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/apps/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/apps/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/apps/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/contact/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/fr/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/fr/cv/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/cv/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/cv/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/cv/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/fr/learning/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/learning/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/learning/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/learning/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/fr/apps/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/apps/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/apps/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/apps/"/>
+  </url>
+  <url>
+    <loc>https://zakariafadli.com/fr/contact/</loc>
+    <xhtml:link rel="alternate" hreflang="en" href="https://zakariafadli.com/contact/"/>
+    <xhtml:link rel="alternate" hreflang="fr" href="https://zakariafadli.com/fr/contact/"/>
+    <xhtml:link rel="alternate" hreflang="x-default" href="https://zakariafadli.com/contact/"/>
+  </url>
+</urlset>

@@ -10,6 +10,7 @@ export async function onRequest(context) {
       search: url.search,
       cookieHeader: request.headers.get("Cookie") || "",
       acceptLanguage: request.headers.get("Accept-Language") || "",
+      userAgent: request.headers.get("User-Agent") || "",
     });
     if (target) {
       return new Response(null, redirectInit(target));

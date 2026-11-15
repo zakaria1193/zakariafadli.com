@@ -64,12 +64,53 @@ export function isFrenchTopLanguage(acceptLanguage) {
   return FRENCH_TAGS.has(bestTag.toLowerCase());
 }
 
+// Tokens that identify a crawler (search, AI citation/training, social-card
+// or Lighthouse) by User-Agent, matched case-insensitively as a substring.
+const CRAWLER_TOKENS = [
+  "bot",
+  "crawler",
+  "spider",
+  "slurp",
+  "googlebot",
+  "bingbot",
+  "oai-searchbot",
+  "chatgpt-user",
+  "perplexitybot",
+  "claude-searchbot",
+  "claude-user",
+  "claudebot",
+  "gptbot",
+  "google-extended",
+  "ccbot",
+  "applebot",
+  "facebookexternalhit",
+  "twitterbot",
+  "linkedinbot",
+  "lighthouse",
+  "chrome-lighthouse",
+];
+
+// Returns true when the User-Agent header matches a known crawler token.
+export function isCrawler(userAgent) {
+  if (!userAgent) return false;
+  const ua = userAgent.toLowerCase();
+  return CRAWLER_TOKENS.some((token) => ua.includes(token));
+}
+
 // Returns the French twin path (+ query string) to redirect to, or null to
 // serve the English page / fall through unchanged.
-export function decideRedirect({ method, pathname, search = "", cookieHeader = "", acceptLanguage = "" }) {
+export function decideRedirect({
+  method,
+  pathname,
+  search = "",
+  cookieHeader = "",
+  acceptLanguage = "",
+  userAgent = "",
+}) {
   if (method !== "GET" && method !== "HEAD") return null;
   const twin = frenchTwin(pathname);
   if (!twin) return null;
+  if (isCrawler(userAgent)) return null;
   const lang = parseLangCookie(cookieHeader);
   if (lang === "en") return null;
   if (lang === "fr") return twin + search;

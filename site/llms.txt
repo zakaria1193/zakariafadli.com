@@ -1,0 +1,15 @@
+# Zakaria Fadli
+
+> Senior embedded toolchain engineer at AdaCore in Paris, working on cross-compilers, binary tools and run-times, with RISC-V among the targets.
+
+Before AdaCore, Zakaria built firmware for connected electrical devices (wireless, Zigbee) at Netatmo and Legrand group, from 2017 to 2025. He studied at ENSEEIHT and Georgia Institute of Technology.
+
+Contact: https://zakariafadli.com/contact/ · GitHub: https://github.com/zakaria1193
+
+## Pages
+
+- [Home](https://zakariafadli.com/): who Zakaria is, his role and background.
+- [CV](https://zakariafadli.com/cv/): experience at AdaCore, Netatmo and Legrand, education at ENSEEIHT and Georgia Tech.
+- [Learning](https://zakariafadli.com/learning/): curated embedded systems learning resources.
+- [Apps](https://zakariafadli.com/apps/): apps and side projects Zakaria has built.
+- [Contact](https://zakariafadli.com/contact/): how to get in touch.

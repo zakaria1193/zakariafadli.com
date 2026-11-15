@@ -1,0 +1,7 @@
+# Keep Cloudflare Pages preview/production *.pages.dev hosts out of search
+# indexes; the apex zakariafadli.com is the only canonical, indexable host.
+https://:project.pages.dev/*
+  X-Robots-Tag: noindex
+
+https://:version.:project.pages.dev/*
+  X-Robots-Tag: noindex

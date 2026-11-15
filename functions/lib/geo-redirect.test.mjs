@@ -1,6 +1,6 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { decideRedirect, redirectInit } from "./geo-redirect.mjs";
+import { decideRedirect, isCrawler, redirectInit } from "./geo-redirect.mjs";
 
 for (const tag of ["fr", "fr-FR", "fr-BE", "fr-CH"]) {
   test(`${tag} as top language redirects`, () => {
@@ -200,6 +200,76 @@ test("non-GET/HEAD methods never redirect", () => {
   assert.equal(
     decideRedirect({ method: "POST", pathname: "/", acceptLanguage: "fr-FR" }),
     null
+  );
+});
+
+test("Googlebot with Accept-Language fr is not redirected", () => {
+  assert.equal(
+    decideRedirect({
+      method: "GET",
+      pathname: "/",
+      acceptLanguage: "fr",
+      userAgent: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    }),
+    null
+  );
+});
+
+test("Googlebot with a lang=fr cookie is not redirected", () => {
+  assert.equal(
+    decideRedirect({
+      method: "GET",
+      pathname: "/",
+      cookieHeader: "lang=fr",
+      userAgent: "Mozilla/5.0 (compatible; Googlebot/2.1; +http://www.google.com/bot.html)",
+    }),
+    null
+  );
+});
+
+for (const ua of ["OAI-SearchBot", "PerplexityBot", "Claude-SearchBot", "Bingbot"]) {
+  test(`${ua} on /cv/ with Accept-Language fr-FR is not redirected`, () => {
+    assert.equal(
+      decideRedirect({
+        method: "GET",
+        pathname: "/cv/",
+        acceptLanguage: "fr-FR",
+        userAgent: ua,
+      }),
+      null
+    );
+  });
+}
+
+for (const page of ["/", "/cv/", "/learning/", "/apps/", "/contact/"]) {
+  test(`${page} with no cookie and no Accept-Language is not redirected`, () => {
+    assert.equal(decideRedirect({ method: "GET", pathname: page }), null);
+  });
+}
+
+test("a normal Chrome UA with Accept-Language fr still redirects", () => {
+  assert.equal(
+    decideRedirect({
+      method: "GET",
+      pathname: "/",
+      acceptLanguage: "fr",
+      userAgent:
+        "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36",
+    }),
+    "/fr/"
+  );
+});
+
+test("isCrawler matches known tokens case-insensitively", () => {
+  assert.equal(isCrawler("Mozilla/5.0 (compatible; Googlebot/2.1)"), true);
+  assert.equal(isCrawler("GPTBOT"), true);
+  assert.equal(isCrawler("ClaudeBot/1.0"), true);
+  assert.equal(isCrawler(""), false);
+  assert.equal(
+    isCrawler(
+      "Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/124.0.0.0 Safari/537.36"
+    ),
+    false
   );
 });
 
