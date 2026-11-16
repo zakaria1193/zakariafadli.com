@@ -130,3 +130,26 @@ export function redirectInit(location) {
     },
   };
 }
+
+const CANONICAL_HOST = "zakariafadli.com";
+
+// Returns the absolute canonical URL to 301 to when `host` is the www twin
+// of the canonical host, or null when it already is the canonical host (or
+// anything else, e.g. a *.pages.dev preview, which must not be redirected).
+export function decideHostRedirect({ host, pathname, search = "" }) {
+  if (host === "www." + CANONICAL_HOST) {
+    return "https://" + CANONICAL_HOST + pathname + search;
+  }
+  return null;
+}
+
+// Plain-object response shape for a permanent host canonicalization redirect.
+export function hostRedirectInit(location) {
+  return {
+    status: 301,
+    headers: {
+      Location: location,
+      "Cache-Control": "public, max-age=3600",
+    },
+  };
+}

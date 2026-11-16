@@ -92,6 +92,12 @@ hand-written), `can-you-review` (no README), `bustimes` (empty repo), and all fo
 3. Look at the site on its `*.pages.dev` address, check the Apps section's picks,
    then remove `hold` from the go-live ticket (id below once created).
 
+## Search and AI-search visibility
+
+See [`docs/search-visibility.md`](docs/search-visibility.md) for what SEO/AEO setup
+is in place, what was verified live, and what still needs a signed-in browser
+(Search Console, Bing Webmaster Tools, Cloudflare Web Analytics).
+
 ## Follow-up ticket
 
 Go-live ticket id: `zakariafadli-com-0001`.

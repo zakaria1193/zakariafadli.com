@@ -27,6 +27,15 @@ no-store` and `Vary: Accept-Language, Cookie`, and keeps the query string.
 Any exception in the function falls through to `context.next()` instead of
 erroring.
 
+Before any of that, the same function 301-redirects `www.zakariafadli.com`
+to the matching `https://zakariafadli.com` URL (path and query kept),
+whatever the user agent or cookie: `decideHostRedirect()` in
+`lib/geo-redirect.mjs`. It never touches a `*.pages.dev` host, so preview
+deployments keep working. This exists because `www` is attached as a
+Cloudflare Pages custom domain on the same project (it serves the site
+directly rather than bouncing through a DNS/dashboard redirect), so the
+canonicalization has to happen in code.
+
 The decision logic is a pure function in `lib/geo-redirect.mjs`, with no
 Cloudflare types, so it is covered by plain `node --test` tests in
 `lib/geo-redirect.test.mjs` (run by `make test`, no npm, no dependencies).

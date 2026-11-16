@@ -1,6 +1,12 @@
 import { test } from "node:test";
 import assert from "node:assert/strict";
-import { decideRedirect, isCrawler, redirectInit } from "./geo-redirect.mjs";
+import {
+  decideRedirect,
+  isCrawler,
+  redirectInit,
+  decideHostRedirect,
+  hostRedirectInit,
+} from "./geo-redirect.mjs";
 
 for (const tag of ["fr", "fr-FR", "fr-BE", "fr-CH"]) {
   test(`${tag} as top language redirects`, () => {
@@ -279,4 +285,39 @@ test("the redirect has 302, Cache-Control private no-store and the new Vary", ()
   assert.equal(init.headers["Cache-Control"], "private, no-store");
   assert.equal(init.headers["Vary"], "Accept-Language, Cookie");
   assert.equal(init.headers["Location"], "/fr/");
+});
+
+test("www host redirects to the apex, path and query kept", () => {
+  assert.equal(
+    decideHostRedirect({
+      host: "www.zakariafadli.com",
+      pathname: "/cv/",
+      search: "?x=1",
+    }),
+    "https://zakariafadli.com/cv/?x=1"
+  );
+});
+
+test("the apex host does not redirect", () => {
+  assert.equal(
+    decideHostRedirect({ host: "zakariafadli.com", pathname: "/" }),
+    null
+  );
+});
+
+test("a pages.dev preview host does not redirect", () => {
+  assert.equal(
+    decideHostRedirect({
+      host: "abc123.zakariafadli-com.pages.dev",
+      pathname: "/",
+    }),
+    null
+  );
+});
+
+test("hostRedirectInit is a permanent redirect with a cacheable header", () => {
+  const init = hostRedirectInit("https://zakariafadli.com/");
+  assert.equal(init.status, 301);
+  assert.equal(init.headers["Location"], "https://zakariafadli.com/");
+  assert.equal(init.headers["Cache-Control"], "public, max-age=3600");
 });
