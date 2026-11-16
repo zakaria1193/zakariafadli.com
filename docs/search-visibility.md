@@ -50,8 +50,10 @@ Run on 2026-11-16 against the production domain:
   `functions/_middleware.js` ahead of the language redirect, 301-ing
   `www.zakariafadli.com/*` to the matching `https://zakariafadli.com/*` (path and query
   kept), leaving `*.pages.dev` alone. Covered by `node --test` cases in
-  `functions/lib/geo-redirect.test.mjs`. **Needs a live re-check after this deploys**:
-  `curl -I https://www.zakariafadli.com/` should then answer `301` to the apex.
+  `functions/lib/geo-redirect.test.mjs`. Confirmed live after deploy (commit `0eacbc2`):
+  `curl -I https://www.zakariafadli.com/` now answers `301` to `https://zakariafadli.com/`,
+  and the French geo-redirect for real browsers is unaffected (a normal UA with
+  `Accept-Language: fr` on `/` still gets a `302` to `/fr/`).
 - **`zakaria1193.github.io`** (the old site, ticket `zakariafadli-com-0001`): `curl -I`
   on `/` returns `200` with an HTML `<meta http-equiv="refresh">` redirect to
   `https://zakariafadli.com/` (not a `301`); `/cv` returns a same-host `301` to `/cv/`,
