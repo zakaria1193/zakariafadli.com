@@ -130,6 +130,16 @@ run's "Blocked" note (no connected browser) is resolved; details kept here for h
   dash.cloudflare.com → Web analytics → `zakariafadli.com`, once there is live traffic.
 - **Rich Results Test / Schema.org validator**: done, see above — both pass clean.
 
+## JS-disabled UI check
+
+Playwright (Python, Chromium, `--disable-javascript` + `java_script_enabled=False`),
+desktop (1280×900) and phone (390×844), on `/`, `/cv/` and `/fr/`: `h1` present
+("Hi!" / "Experience" / "Salut !"), full hero/about paragraph and CV content visible
+as plain text, no console errors. Screenshots saved to
+`/tmp/pjm-zakariafadli-com-0007/` (not committed) — all six look correct, including the
+`/cv/` page's `Experience`/`Education` heading split (visually unchanged from before the
+`h1`→`h2` fix).
+
 ## `www` host redirect
 
 `www.zakariafadli.com` is a Cloudflare Pages custom domain on the same project as the
