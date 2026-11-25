@@ -1,6 +1,6 @@
 # Zakaria Fadli
 
-> Ingénieur senior en outils pour l'embarqué chez AdaCore à Paris, sur les compilateurs croisés, les outils binaires et les run-times, avec RISC-V parmi les cibles.
+> Ingénieur senior en outils pour l'embarqué chez AdaCore à Paris, sur les compilateurs cross, les outils binaires et les run-times, avec RISC-V parmi les cibles.
 
 Avant AdaCore, Zakaria a développé du firmware pour des appareils électriques connectés (sans fil, Zigbee) chez Netatmo et le groupe Legrand, de 2017 à 2025. Il a étudié à l'ENSEEIHT et à Georgia Institute of Technology.
 
